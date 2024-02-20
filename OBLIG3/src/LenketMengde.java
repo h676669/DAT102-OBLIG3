@@ -1,6 +1,6 @@
 import org.w3c.dom.Node;
 
-public class LenketMengde implements MengdeADT {
+public class LenketMengde<T> implements MengdeADT<T> {
 
     private Node first;
     private int antall;
@@ -12,63 +12,62 @@ public class LenketMengde implements MengdeADT {
 
     @Override
     public boolean erTom() {
+        return antall == 0;
+    }
 
+    @Override
+    public boolean inneholder(T element) {
         return false;
     }
 
     @Override
-    public boolean inneholder(Object element) {
+    public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
         return false;
     }
 
     @Override
-    public boolean erDelmengdeAv(MengdeADT annenMengde) {
+    public boolean erLik(MengdeADT<T> annenMengde) {
         return false;
     }
 
     @Override
-    public boolean erLik(MengdeADT annenMengde) {
+    public boolean erDisjunkt(MengdeADT<T> annenMengde) {
         return false;
     }
 
     @Override
-    public boolean erDisjunkt(MengdeADT annenMengde) {
-        return false;
-    }
-
-    @Override
-    public MengdeADT snitt(MengdeADT annenMengde) {
+    public MengdeADT snitt(MengdeADT<T> annenMengde) {
         return null;
     }
 
     @Override
-    public MengdeADT union(MengdeADT annenMengde) {
+    public MengdeADT union(MengdeADT<T> annenMengde) {
         return null;
     }
 
     @Override
-    public MengdeADT minus(MengdeADT annenMengde) {
+    public MengdeADT minus(MengdeADT<T> annenMengde) {
         return null;
     }
 
     @Override
-    public void leggTil(Object element) {
+    public void leggTil(T element) {
 
     }
 
     @Override
-    public void leggTilAlleFra(MengdeADT annenMengde) {
+    public void leggTilAlleFra(MengdeADT<T> annenMengde) {
 
     }
 
     @Override
-    public Object fjern(Object element) {
+    public T fjern(T element) {
         return null;
     }
 
     @Override
-    public Object[] tilTabell() {
-        return new Object[0];
+    public T[] tilTabell() {
+        return new T[0];
     }
 
     @Override
