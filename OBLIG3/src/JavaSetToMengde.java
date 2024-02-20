@@ -6,16 +6,17 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
 
     Set<T> z = new HashSet<>();
+    private int antall;
 
 
     @Override
     public boolean erTom() {
-        return false;
+        return z.isEmpty();
     }
 
     @Override
     public boolean inneholder(T element) {
-        return false;
+        return z.contains(element);
     }
 
     @Override
@@ -25,7 +26,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
-        return false;
+        return z.equals(annenMengde);
     }
 
     @Override
@@ -51,6 +52,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     @Override
     public void leggTil(T element) {
         z.add(element);
+        antall++;
     }
 
     @Override
@@ -62,6 +64,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     public T fjern(T element) {
         if (z.contains(element)) {
             z.remove(element);
+            antall--;
             return element;
         } else {
             return null;
@@ -69,12 +72,14 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public T[] tilTabell() {
-        return new Object[0];
+
+        return z.toArray((T[]) new Object[0]);
     }
 
     @Override
     public int antallElementer() {
-        return 0;
+        return antall;
     }
 }
