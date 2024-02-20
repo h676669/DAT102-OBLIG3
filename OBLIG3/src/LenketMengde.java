@@ -1,6 +1,17 @@
-import org.w3c.dom.Node;
+
 
 public class LenketMengde<T> implements MengdeADT<T> {
+
+    private class Node {
+
+        private T data;
+        private Node neste;
+
+        private Node(T data) {
+            this.data = data;
+            this.neste = null;
+        }
+    }
 
     private Node first;
     private int antall;
@@ -22,6 +33,11 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
+        for () {
+            if (annenMengde.contains(T)) {
+                return true;
+            }
+        }
         return false;
     }
 
