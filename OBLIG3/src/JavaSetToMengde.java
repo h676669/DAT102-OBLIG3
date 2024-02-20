@@ -74,7 +74,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        JavaSetToMengde<T> tempSet = new JavaSetToMengde<T>(Set.copyOf(z), z.size());
+        JavaSetToMengde<T> tempSet = new JavaSetToMengde<>(Set.copyOf(z), z.size());
         for (T t : annenMengde.tilTabell()) {
             if (tempSet.inneholder(t)) {
                 tempSet.fjern(t);
