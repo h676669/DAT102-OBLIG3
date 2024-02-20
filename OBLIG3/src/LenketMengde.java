@@ -42,7 +42,7 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        //Går gjennom annenMengde og returnerer false om T har elementer som ikke er i annenMengde
+        //Går gjennom noden og returnerer false om T har elementer som ikke er i annenMengde
         Node denne = first;
         while (denne != null) {
             if (!annenMengde.inneholder(denne.data)) {
@@ -64,7 +64,15 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
-        return false;
+        //Går gjennom noden og returnerer false om annenMengde inneholder minst et element.
+        Node denne = first;
+        while (denne != null) {
+            if (annenMengde.inneholder(denne.data)) {
+                return false;
+            }
+            denne = denne.neste;
+        }
+        return true;
     }
 
     @Override
