@@ -28,10 +28,22 @@ public class JavaSetToMengdeTest {
     void testInneholder() {
         assertTrue(testMengde1.inneholder("Ogre"));
         assertTrue(testMengde2.inneholder("Freddy Fazbear"));
-
-        testMengde2.fjern("Freddy Fazbear");
-        assertFalse(testMengde2.inneholder("Freddy Fazbear"));
     }
+
+    @Test
+    void testFjern() {
+        assertTrue(testMengde1.inneholder("Goku"));
+        testMengde1.fjern("Goku");
+        assertFalse(testMengde1.inneholder("Goku"));
+    }
+
+    @Test
+    void testLeggTil() {
+        testMengde2.leggTil("Arne");
+        assertTrue(testMengde2.inneholder("Arne"));
+    }
+
+
 
 
 
