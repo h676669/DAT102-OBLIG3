@@ -1,10 +1,9 @@
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 public class JavaSetToMengde<T> implements MengdeADT<T> {
-
-
-
+    
     Set<T> z = new HashSet<>();
     private int antall;
 
@@ -57,7 +56,8 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-
+        Collections.addAll(z, annenMengde.tilTabell());
+        antall += annenMengde.antallElementer();
     }
 
     @Override
