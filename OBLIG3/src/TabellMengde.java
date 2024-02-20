@@ -1,12 +1,35 @@
-public class TabellMengde<T> implements MengdeADT<T>{
+import java.util.Arrays;
 
-    @Override
-    public boolean erTom() {
-        return false;
+public class TabellMengde<T> implements MengdeADT<T>{
+    private MengdeADT<T>[]tabell;
+    private int antall;
+
+
+    @SuppressWarnings("unchecked")
+    public TabellMengde(int kapasitet) {
+        tabell = new TabellMengde[kapasitet];
+        antall = 0;
     }
 
+    //sjekker om tabellen er tom
+    @Override
+    public boolean erTom() {
+        for(MengdeADT<T> t : tabell){
+            if(t != null){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Sjekker om tabellen inneholder et spesifikt element
     @Override
     public boolean inneholder(T element) {
+        for(MengdeADT<T> t: tabell){
+            if(t == element){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -40,28 +63,58 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return null;
     }
 
+    // Legger til på slutten av tabellen
+    @SuppressWarnings("unchecked")
     @Override
     public void leggTil(T element) {
+        if(antall < tabell.length ){
+            tabell[antall] = (MengdeADT<T>) element;
+            antall++;
+        }
+        else {
+            int temp = antall;
+            tabell = new TabellMengde[antall + 1];
+            setAntall(temp);
+            leggTil(element);
 
+        }
     }
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
 
+
     }
 
+    //returnere null vist det ikke kan fjernes
+    // vil lage hull i tabellen
+    @SuppressWarnings("unchecked")
     @Override
     public T fjern(T element) {
-        return null;
+        T temp = null;
+        if(!erTom()){
+            for(int i = 0; i < tabell.length; i++){
+                if(tabell[i] == element){
+                    temp = (T) tabell[i];
+                    tabell[i] = null;
+                }
+            }
+            return temp;
+        }
+        return temp;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public T[] tilTabell() {
-        return null;
+        return (T[]) Arrays.copyOf(tabell, antall);
     }
 
     @Override
     public int antallElementer() {
-        return 0;
+        return antall;
+    }
+    public void setAntall(int antall) {
+        this.antall = antall;
     }
 }
