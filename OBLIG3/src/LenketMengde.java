@@ -1,4 +1,6 @@
 public class LenketMengde implements MengdeADT {
+
+
     @Override
     public boolean erTom() {
         return false;
@@ -62,5 +64,32 @@ public class LenketMengde implements MengdeADT {
     @Override
     public int antallElementer() {
         return 0;
+    }
+
+    private class Node<T> {
+
+        private T data;
+        private Node<T> nextNode;
+
+        public Node(T data) {
+            this.data = data;
+            this.nextNode = null;
+        }
+
+        T getData() {
+            return data;
+        }
+
+        void setData(T data) {
+            this.data = data;
+        }
+
+        Node<T> getNextNode() {
+            return nextNode;
+        }
+
+        void setNextNode(Node<T> neste) {
+            this.nextNode = neste;
+        }
     }
 }
