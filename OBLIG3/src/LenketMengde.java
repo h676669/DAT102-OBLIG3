@@ -1,6 +1,18 @@
+import org.w3c.dom.Node;
+
 public class LenketMengde implements MengdeADT {
+
+    private Node first; // Reference to first node
+    private int antall;
+
+    public LenketMengde() {
+        first = null;
+        antall = 0;
+    }
+
     @Override
     public boolean erTom() {
+
         return false;
     }
 
