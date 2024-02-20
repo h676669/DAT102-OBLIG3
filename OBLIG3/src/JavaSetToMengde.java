@@ -55,25 +55,26 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-        return null;
+        JavaSetToMengde<T> tempSet = new JavaSetToMengde<>(Set.copyOf(z), z.size());
+
     }
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        return null;
+        JavaSetToMengde<T> tempSet = new JavaSetToMengde<>(Set.copyOf(z), z.size());
+        tempSet.leggTilAlleFra(annenMengde);
+        return tempSet;
     }
 
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        Set<T> tempSet = Set.copyOf(z);
-        int tempAntall = antall;
+        JavaSetToMengde<T> tempSet = new JavaSetToMengde<T>(Set.copyOf(z), z.size());
         for (T t : annenMengde.tilTabell()) {
-            if (tempSet.contains(t)) {
-                tempSet.remove(t);
-                tempAntall--;
+            if (tempSet.inneholder(t)) {
+                tempSet.fjern(t);
             }
         }
-        return new JavaSetToMengde<>(tempSet,tempAntall);
+        return tempSet;
     }
 
     @Override
