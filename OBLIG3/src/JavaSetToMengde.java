@@ -1,4 +1,12 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class JavaSetToMengde<T> implements MengdeADT<T> {
+
+
+
+    Set<T> z = new HashSet<>();
+
 
     @Override
     public boolean erTom() {
@@ -11,52 +19,57 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     }
 
     @Override
-    public boolean erDelmengdeAv(T annenMengde) {
+    public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
         return false;
     }
 
     @Override
-    public boolean erLik(MengdeADT annenMengde) {
+    public boolean erLik(MengdeADT<T> annenMengde) {
         return false;
     }
 
     @Override
-    public boolean erDisjunkt(MengdeADT annenMengde) {
+    public boolean erDisjunkt(MengdeADT<T> annenMengde) {
         return false;
     }
 
     @Override
-    public MengdeADT snitt(MengdeADT annenMengde) {
+    public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
         return null;
     }
 
     @Override
-    public MengdeADT union(MengdeADT annenMengde) {
+    public MengdeADT<T> union(MengdeADT<T> annenMengde) {
         return null;
     }
 
     @Override
-    public MengdeADT minus(MengdeADT annenMengde) {
+    public MengdeADT minus(MengdeADT<T> annenMengde) {
         return null;
     }
 
     @Override
     public void leggTil(T element) {
+        z.add(element);
+    }
+
+    @Override
+    public void leggTilAlleFra(MengdeADT<T> annenMengde) {
 
     }
 
     @Override
-    public void leggTilAlleFra(MengdeADT annenMengde) {
-
+    public T fjern(T element) {
+        if (z.contains(element)) {
+            z.remove(element);
+            return element;
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public Object fjern(T element) {
-        return null;
-    }
-
-    @Override
-    public Object[] tilTabell() {
+    public T[] tilTabell() {
         return new Object[0];
     }
 
