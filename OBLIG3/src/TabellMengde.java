@@ -1,20 +1,19 @@
 import java.util.Arrays;
 
 public class TabellMengde<T> implements MengdeADT<T>{
-    private MengdeADT<T>[]tabell;
+    private T[] tabell;
     private int antall;
-
 
     @SuppressWarnings("unchecked")
     public TabellMengde(int kapasitet) {
-        tabell = new TabellMengde[kapasitet];
+        tabell = (T[]) new Object[kapasitet];
         antall = 0;
     }
 
     //sjekker om tabellen er tom
     @Override
     public boolean erTom() {
-        for(MengdeADT<T> t : tabell){
+        for(T t : tabell){
             if(t != null){
                 return false;
             }
@@ -25,7 +24,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     //Sjekker om tabellen inneholder et spesifikt element
     @Override
     public boolean inneholder(T element) {
-        for(MengdeADT<T> t: tabell){
+        for(T t: tabell){
             if(t == element){
                 return true;
             }
@@ -38,9 +37,10 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return false;
     }
 
+    //Antar at det ikke er duplikater i mengdene
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
-        return false;
+        return antall == annenMengde.tilTabell().length;
     }
 
     @Override
@@ -55,6 +55,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
+
         return null;
     }
 
@@ -62,33 +63,31 @@ public class TabellMengde<T> implements MengdeADT<T>{
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
         return null;
     }
-
-    // Legger til på slutten av tabellen
     @SuppressWarnings("unchecked")
+    // Legger til på slutten av tabellen
     @Override
     public void leggTil(T element) {
         if(antall < tabell.length ){
-            tabell[antall] = (MengdeADT<T>) element;
+            tabell[antall] = element;
             antall++;
         }
         else {
-            int temp = antall;
-            tabell = new TabellMengde[antall + 1];
-            setAntall(temp);
+            T[] temp = tabell;
+            tabell = (T[]) new Object[antall+1];
+            leggTilAlle(temp);
             leggTil(element);
-
         }
     }
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-
-
+        for(T t : annenMengde.tilTabell()){
+            leggTil(t);
+        }
     }
 
     //returnere null vist det ikke kan fjernes
     // vil lage hull i tabellen
-    @SuppressWarnings("unchecked")
     @Override
     public T fjern(T element) {
         T temp = null;
@@ -104,17 +103,20 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return temp;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public T[] tilTabell() {
-        return (T[]) Arrays.copyOf(tabell, antall);
+        return Arrays.copyOf(tabell,antall);
     }
 
     @Override
     public int antallElementer() {
         return antall;
     }
-    public void setAntall(int antall) {
-        this.antall = antall;
+    //Hjelpe funskjon for å lage nye tabeller
+    private void leggTilAlle(T[] tabell){
+        for (T t : tabell){
+            leggTil(t);
+        }
     }
+
 }
