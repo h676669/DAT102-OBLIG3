@@ -1,3 +1,5 @@
+package oppgave_1;
+
 public interface MengdeADT<T> {
 
     /**
