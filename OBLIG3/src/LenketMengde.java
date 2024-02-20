@@ -1,4 +1,7 @@
-public class LenketMengde implements MengdeADT {
+public class LenketMengde<T> implements MengdeADT<T> {
+
+    Node<T> firstNode;
+    private int antall;
 
 
     @Override
