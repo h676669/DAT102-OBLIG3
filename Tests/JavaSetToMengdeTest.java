@@ -12,6 +12,7 @@ public class JavaSetToMengdeTest {
 
     JavaSetToMengde<String> testMengde1 = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengde2 = new JavaSetToMengde<>();
+    JavaSetToMengde<String> testMengdeTom = new JavaSetToMengde<>();
 
     @BeforeEach
     void setup() {
@@ -41,6 +42,13 @@ public class JavaSetToMengdeTest {
     void testLeggTil() {
         testMengde2.leggTil("Arne");
         assertTrue(testMengde2.inneholder("Arne"));
+    }
+
+    @Test
+    void testErTom() {
+        assertTrue(testMengdeTom.erTom());
+        testMengdeTom.leggTil("lol");
+        assertFalse(testMengdeTom.erTom());
     }
 
 
