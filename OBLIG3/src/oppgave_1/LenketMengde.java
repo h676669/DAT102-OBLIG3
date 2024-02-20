@@ -1,4 +1,4 @@
-
+package oppgave_1;
 
 public class LenketMengde<T> implements MengdeADT<T> {
 

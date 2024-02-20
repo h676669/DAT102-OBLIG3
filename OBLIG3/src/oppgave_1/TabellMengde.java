@@ -1,3 +1,5 @@
+package oppgave_1;
+
 import java.util.Arrays;
 
 public class TabellMengde<T> implements MengdeADT<T>{
