@@ -25,7 +25,12 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        return false;
+        for (T t: tilTabell()) {
+            if (!annenMengde.inneholder(t)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
