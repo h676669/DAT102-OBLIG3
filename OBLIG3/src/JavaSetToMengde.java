@@ -12,6 +12,11 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
         antall = 0;
     }
 
+    public JavaSetToMengde(Set<T> set, int antall) {
+        z = set;
+        this.antall = antall;
+    }
+
 
     @Override
     public boolean erTom() {
@@ -59,8 +64,16 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     }
 
     @Override
-    public MengdeADT minus(MengdeADT<T> annenMengde) {
-        return null;
+    public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
+        Set<T> tempSet = Set.copyOf(z);
+        int tempAntall = antall;
+        for (T t : annenMengde.tilTabell()) {
+            if (tempSet.contains(t)) {
+                tempSet.remove(t);
+                tempAntall--;
+            }
+        }
+        return new JavaSetToMengde<>(tempSet,tempAntall);
     }
 
     @Override
