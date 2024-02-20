@@ -55,8 +55,13 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-        JavaSetToMengde<T> tempSet = new JavaSetToMengde<>(Set.copyOf(z), z.size());
-
+        JavaSetToMengde<T> tempSet = new JavaSetToMengde<>();
+        for (T t : tilTabell()) {
+            if (annenMengde.inneholder(t)) {
+                tempSet.leggTil(t);
+            }
+        }
+        return tempSet;
     }
 
     @Override
