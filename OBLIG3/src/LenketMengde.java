@@ -28,17 +28,26 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean inneholder(T element) {
+        Node denne = first;
+        while (denne != null) {
+            if (denne.data.equals(element)) {
+                return true;
+            }
+            denne = denne.neste;
+        }
         return false;
     }
 
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        for () {
-            if (annenMengde.contains(T)) {
-                return true;
+        Node denne = first;
+        while (denne != null) {
+            if (!annenMengde.inneholder(denne.data)) {
+                return false;
             }
+            denne = denne.neste;
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -83,7 +92,7 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public T[] tilTabell() {
-        return new T[0];
+        return null;
     }
 
     @Override
