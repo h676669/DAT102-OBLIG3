@@ -77,7 +77,17 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT snitt(MengdeADT<T> annenMengde) {
-        return null;
+        //Lager ny mengde snitt, sjekker om annenMengde og noden inneholder det samme
+        //returnerer snitt
+        LenketMengde<T> snitt = new LenketMengde<>();
+        Node denne = first;
+        while (denne != null) {
+            if (annenMengde.inneholder(denne.data)) {
+                snitt.leggTil(denne.data);
+            }
+            denne = denne.neste;
+        }
+        return snitt;
     }
 
     @Override
