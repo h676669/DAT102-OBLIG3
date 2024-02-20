@@ -34,9 +34,18 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return false;
     }
 
+    //Antar ingen duplikater
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        return false;
+        int antallIDelMengde = 0;
+        if(!(annenMengde.tilTabell().length > antall)){
+            for(T t : annenMengde.tilTabell()){
+                if(annenMengde.inneholder(t)){
+                    antallIDelMengde++;
+                }
+            }
+        }
+        return antallIDelMengde == antall;
     }
 
     //Antar at det ikke er duplikater i mengdene
@@ -47,7 +56,15 @@ public class TabellMengde<T> implements MengdeADT<T>{
 
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
-        return false;
+        int antallIDelMengde = 0;
+        if(!(annenMengde.tilTabell().length > antall)){
+            for(T t : annenMengde.tilTabell()){
+                if(annenMengde.inneholder(t)){
+                    antallIDelMengde++;
+                }
+            }
+        }
+        return antallIDelMengde == 0;
     }
 
     @Override
@@ -114,7 +131,8 @@ public class TabellMengde<T> implements MengdeADT<T>{
     public int antallElementer() {
         return antall;
     }
-    //Hjelpe funskjon for å lage nye tabeller
+
+    //Hjelpe funskjon for å lage nye tabeller av reine T variabler
     private void leggTilAlle(T[] tabell){
         for (T t : tabell){
             leggTil(t);
