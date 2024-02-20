@@ -39,6 +39,7 @@ public class JavaSetToMengdeTest {
 
     @Test
     void testLeggTil() {
+        assertFalse(testMengde2.inneholder("Arne"));
         testMengde2.leggTil("Arne");
         assertTrue(testMengde2.inneholder("Arne"));
     }
@@ -49,11 +50,6 @@ public class JavaSetToMengdeTest {
         testMengdeTom.leggTil("lol");
         assertFalse(testMengdeTom.erTom());
     }
-
-
-
-
-
 
 
 }
