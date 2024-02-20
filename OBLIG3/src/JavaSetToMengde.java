@@ -1,12 +1,16 @@
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 public class JavaSetToMengde<T> implements MengdeADT<T> {
 
-
-
-    Set<T> z = new HashSet<>();
+    Set<T> z;
     private int antall;
+
+    public JavaSetToMengde() {
+        z = new HashSet<>();
+        antall = 0;
+    }
 
 
     @Override
@@ -21,17 +25,27 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        return false;
+        for (T t: tilTabell()) {
+            if (!annenMengde.inneholder(t)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
-        return z.equals(annenMengde);
+        return z.equals(annenMengde); // ?????
     }
 
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
-        return false;
+        for (T t : annenMengde.tilTabell()) {
+            if (z.contains(t)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -57,7 +71,10 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-
+        if (!annenMengde.erTom()) {
+            Collections.addAll(z, annenMengde.tilTabell());
+            antall += annenMengde.antallElementer();
+        }
     }
 
     @Override
@@ -74,7 +91,6 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     @Override
     @SuppressWarnings("unchecked")
     public T[] tilTabell() {
-
         return z.toArray((T[]) new Object[0]);
     }
 
