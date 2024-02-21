@@ -70,18 +70,33 @@ public class TabellMengde<T> implements MengdeADT<T>{
 
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-        return null;
+        MengdeADT<T> nyMengde = null;
+        for(int i = 0; i < antall; i++){
+            if(annenMengde.inneholder(tabell[i])){
+                nyMengde.leggTil(tabell[i]);
+            }
+        }
+        return nyMengde;
     }
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-
-        return null;
+        MengdeADT<T> nyMengde = annenMengde;
+        for(int i = 0; i < antall; i++){
+                nyMengde.leggTil(tabell[i]);
+        }
+        return nyMengde;
     }
 
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        return null;
+        MengdeADT<T> nyMengde= annenMengde;
+        for(int i = 0; i < antall; i++){
+            if(annenMengde.inneholder(tabell[i])){
+                nyMengde.fjern(tabell[i]);
+            }
+        }
+        return nyMengde;
     }
     @SuppressWarnings("unchecked")
     // Legger til på slutten av tabellen

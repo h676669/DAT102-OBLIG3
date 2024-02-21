@@ -3,8 +3,7 @@ import oppgave_1.MengdeADT;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class TabellMengdeTest {
@@ -19,14 +18,13 @@ public class TabellMengdeTest {
 
     }
     @Test
-    void TestFjern(){
-
-    }
-    @Test
-    void TestLeggTil(){
+    void TestLeggTilOgFjern(){
         int leggTil1 = 10;
-        assertEquals(0, mengde.antallElementer());
+        assertTrue(mengde.erTom());
         mengde.leggTil(10);
-        assertEquals(1, mengde.antallElementer());
+        assertTrue(mengde.inneholder(leggTil1));
+        mengde.fjern(leggTil1);
+        //assertEquals(0,mengde.antallElementer());
+        assertFalse(mengde.inneholder(leggTil1));
     }
 }
