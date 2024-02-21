@@ -12,9 +12,9 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
         antall = 0;
     }
 
-    public JavaSetToMengde(Set<T> set, int antall) {
+    public JavaSetToMengde(Set<T> set) {
         z = set;
-        this.antall = antall;
+        this.antall = z.size();
     }
 
 
@@ -30,7 +30,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-        for (T t: tilTabell()) {
+        for (T t : tilTabell()) {
             if (!annenMengde.inneholder(t)) {
                 return false;
             }
@@ -40,7 +40,6 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
-
         return Arrays.equals(tilTabell(), annenMengde.tilTabell());
     }
 
@@ -67,14 +66,14 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        JavaSetToMengde<T> tempSet = new JavaSetToMengde<>(Set.copyOf(z), z.size());
-        tempSet.leggTilAlleFra(annenMengde);
-        return tempSet;
+        Set<T> tempSet = new HashSet<>(Set.copyOf(z));
+        tempSet.addAll(Arrays.asList(annenMengde.tilTabell()));
+        return new JavaSetToMengde<>(tempSet);
     }
 
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        JavaSetToMengde<T> tempSet = new JavaSetToMengde<>(Set.copyOf(z), z.size());
+        JavaSetToMengde<T> tempSet = new JavaSetToMengde<>(Set.copyOf(z));
         for (T t : annenMengde.tilTabell()) {
             if (tempSet.inneholder(t)) {
                 tempSet.fjern(t);
@@ -85,8 +84,10 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public void leggTil(T element) {
-        z.add(element);
-        antall++;
+        if (!z.contains(element)) {
+            z.add(element);
+            antall++;
+        }
     }
 
     @Override
