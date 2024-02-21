@@ -92,8 +92,9 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
         if (!annenMengde.erTom()) {
-            Collections.addAll(z, annenMengde.tilTabell());
-            antall += annenMengde.antallElementer();
+            for (T t : annenMengde.tilTabell()) {
+                leggTil(t);
+            }
         }
     }
 

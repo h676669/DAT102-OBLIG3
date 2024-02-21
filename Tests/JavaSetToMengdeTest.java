@@ -17,6 +17,8 @@ public class JavaSetToMengdeTest {
     JavaSetToMengde<String> testMengde2 = new JavaSetToMengde<>();
 
     JavaSetToMengde<String> testMengdeSnitt = new JavaSetToMengde<>();
+
+    JavaSetToMengde<String> testMengdeUnion = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengdeTom = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengde1kopi = new JavaSetToMengde<>();
 
@@ -25,10 +27,12 @@ public class JavaSetToMengdeTest {
         testMengde1 = new JavaSetToMengde<>();
         for (String s : stringTab1) {
             testMengde1.leggTil(s);
+            testMengdeUnion.leggTil(s);
         }
         testMengde2 = new JavaSetToMengde<>();
         for (String s : stringTab2) {
             testMengde2.leggTil(s);
+            testMengdeUnion.leggTil(s);
         }
         testMengde1kopi = new JavaSetToMengde<>();
         for (String s : stringTab1) {
@@ -82,7 +86,31 @@ public class JavaSetToMengdeTest {
         testMengdeSnitt.erLik(testMengde1.snitt(testMengde2));
     }
 
+    @Test
+    void union() {
+        // create two sets with some common and some distinct elements
+        JavaSetToMengde<Integer> set1 = new JavaSetToMengde<>();
+        set1.leggTil(1);
+        set1.leggTil(2);
+        set1.leggTil(3);
 
+        JavaSetToMengde<Integer> set2 = new JavaSetToMengde<>();
+        set2.leggTil(3);
+        set2.leggTil(4);
+        set2.leggTil(5);
+
+        // create the expected union set
+        JavaSetToMengde<Integer> expected = new JavaSetToMengde<>();
+        expected.leggTil(1);
+        expected.leggTil(2);
+        expected.leggTil(3);
+        expected.leggTil(4);
+        expected.leggTil(5);
+
+        // call the union method and assert that the result is equal to the expected set
+        MengdeADT<Integer> actual = set1.union(set2);
+        assertTrue(actual.erLik(expected));
+    }
 
 
 }
