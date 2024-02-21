@@ -1,9 +1,6 @@
 package oppgave_1;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class JavaSetToMengde<T> implements MengdeADT<T> {
 
@@ -43,6 +40,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
+
         return Arrays.equals(tilTabell(), annenMengde.tilTabell());
     }
 

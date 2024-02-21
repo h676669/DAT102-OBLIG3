@@ -1,6 +1,10 @@
 import oppgave_1.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -12,14 +16,21 @@ public class JavaSetToMengdeTest {
     JavaSetToMengde<String> testMengde1 = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengde2 = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengdeTom = new JavaSetToMengde<>();
+    JavaSetToMengde<String> testMengde1kopi = new JavaSetToMengde<>();
 
     @BeforeEach
     void setup() {
+        testMengde1 = new JavaSetToMengde<>();
         for (String s : stringTab1) {
             testMengde1.leggTil(s);
         }
+        testMengde2 = new JavaSetToMengde<>();
         for (String s : stringTab2) {
             testMengde2.leggTil(s);
+        }
+        testMengde1kopi = new JavaSetToMengde<>();
+        for (String s : stringTab2) {
+            testMengde1kopi.leggTil(s);
         }
     }
 
@@ -49,6 +60,18 @@ public class JavaSetToMengdeTest {
         assertTrue(testMengdeTom.erTom());
         testMengdeTom.leggTil("lol");
         assertFalse(testMengdeTom.erTom());
+    }
+
+    @Test
+    void testAntallElementer() {
+        assertEquals(6, testMengde1.antallElementer());
+        assertEquals(4, testMengde2.antallElementer());
+    }
+
+    @Test
+    void testTilTabell() {
+        assertEquals(stringTab1.length, testMengde1.antallElementer());
+        assertTrue(testMengde1.erLik(testMengde1kopi));
     }
 
 
