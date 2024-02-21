@@ -120,8 +120,4 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     public int antallElementer() {
         return antall;
     }
-
-    public void fjernAlle() {
-
-    }
 }

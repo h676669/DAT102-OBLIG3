@@ -15,9 +15,7 @@ public class JavaSetToMengdeTest {
 
     JavaSetToMengde<String> testMengde1 = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengde2 = new JavaSetToMengde<>();
-
     JavaSetToMengde<String> testMengdeSnitt = new JavaSetToMengde<>();
-
     JavaSetToMengde<String> testMengdeUnion = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengdeTom = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengde1kopi = new JavaSetToMengde<>();
@@ -46,6 +44,7 @@ public class JavaSetToMengdeTest {
     void testInneholder() {
         assertTrue(testMengde1.inneholder("Ogre"));
         assertTrue(testMengde2.inneholder("Freddy Fazbear"));
+        assertFalse(testMengdeTom.inneholder("Nils"));
     }
 
     @Test
@@ -86,6 +85,7 @@ public class JavaSetToMengdeTest {
         testMengdeSnitt.erLik(testMengde1.snitt(testMengde2));
     }
 
+    // bing test
     @Test
     void union() {
         // create two sets with some common and some distinct elements
@@ -112,5 +112,13 @@ public class JavaSetToMengdeTest {
         assertTrue(actual.erLik(expected));
     }
 
+    @Test
+    void testErDelmengdeAv() {
+        testMengdeTom.leggTil("Goku");
+        testMengdeTom.leggTil("Joe Biden");
+        assertTrue(testMengdeTom.erDelmengdeAv(testMengde1));
+        assertFalse(testMengdeTom.erDelmengdeAv(testMengde2));
+    }
+    
 
 }
