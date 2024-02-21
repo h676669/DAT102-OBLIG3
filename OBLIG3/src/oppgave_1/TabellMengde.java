@@ -5,10 +5,11 @@ import java.util.Arrays;
 public class TabellMengde<T> implements MengdeADT<T>{
     private T[] tabell;
     private int antall;
+    private final int standardStart = 10;
 
     @SuppressWarnings("unchecked")
-    public TabellMengde(int kapasitet) {
-        tabell = (T[]) new Object[kapasitet];
+    public TabellMengde() {
+        tabell = (T[]) new Object[standardStart];
         antall = 0;
     }
 
@@ -112,9 +113,10 @@ public class TabellMengde<T> implements MengdeADT<T>{
         T temp = null;
         if(!erTom()){
             for(int i = 0; i < tabell.length; i++){
-                if(tabell[i] == element){
-                    temp = (T) tabell[i];
+                if(tabell[i].equals(element) && tabell[i] != null){
+                    temp =  tabell[i];
                     tabell[i] = null;
+                    break;
                 }
             }
             return temp;
