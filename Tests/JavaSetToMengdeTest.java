@@ -11,10 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class JavaSetToMengdeTest {
 
     String[] stringTab1 = {"Nils", "Ogre", "Goku", "Kevin", "Joe Biden", "Test"};
-    String[] stringTab2 = {"Obama", "Jan Teigen", "Sonic The Hedgehog", "Freddy Fazbear"};
+    String[] stringTab2 = {"Obama", "Jan Teigen", "Sonic The Hedgehog", "Freddy Fazbear", "Goku"};
 
     JavaSetToMengde<String> testMengde1 = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengde2 = new JavaSetToMengde<>();
+
+    JavaSetToMengde<String> testMengdeSnitt = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengdeTom = new JavaSetToMengde<>();
     JavaSetToMengde<String> testMengde1kopi = new JavaSetToMengde<>();
 
@@ -29,9 +31,10 @@ public class JavaSetToMengdeTest {
             testMengde2.leggTil(s);
         }
         testMengde1kopi = new JavaSetToMengde<>();
-        for (String s : stringTab2) {
+        for (String s : stringTab1) {
             testMengde1kopi.leggTil(s);
         }
+        testMengdeSnitt.leggTil("Goku");
     }
 
 
@@ -65,14 +68,21 @@ public class JavaSetToMengdeTest {
     @Test
     void testAntallElementer() {
         assertEquals(6, testMengde1.antallElementer());
-        assertEquals(4, testMengde2.antallElementer());
+        assertEquals(5, testMengde2.antallElementer());
     }
 
     @Test
-    void testTilTabell() {
+    void testErLik_testTilTabell() {
         assertEquals(stringTab1.length, testMengde1.antallElementer());
         assertTrue(testMengde1.erLik(testMengde1kopi));
     }
+
+    @Test
+    void testSnitt() {
+        testMengdeSnitt.erLik(testMengde1.snitt(testMengde2));
+    }
+
+
 
 
 }
