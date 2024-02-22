@@ -150,6 +150,6 @@ public class TabellMengde<T> implements MengdeADT<T>{
     public int antallElementer() {
         return antall;
     }
-    
+
 
 }
