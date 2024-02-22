@@ -1,6 +1,8 @@
 package oppgave_1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class TabellMengde<T> implements MengdeADT<T>{
     private T[] tabell;
@@ -52,9 +54,16 @@ public class TabellMengde<T> implements MengdeADT<T>{
     //Antar at det ikke er duplikater i mengdene
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
-        return antall == annenMengde.tilTabell().length;
+        int like = 0;
+        for(int i = 0;i < antall;i++ ){
+            if(annenMengde.inneholder(tabell[i])){
+                like++;
+            }
+        }
+        return antall == like;
     }
 
+    // sjekker om to mengder har ingen like elementer
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
         int antallIDelMengde = 0;
@@ -101,8 +110,9 @@ public class TabellMengde<T> implements MengdeADT<T>{
         }
         return nyMengde;
     }
-    @SuppressWarnings("unchecked")
+
     // Legger til på slutten av tabellen
+    @SuppressWarnings("unchecked")
     @Override
     public void leggTil(T element) {
         if(antall < tabell.length ){
@@ -125,7 +135,6 @@ public class TabellMengde<T> implements MengdeADT<T>{
     }
 
     // returnere null vist det ikke kan fjernes
-    // vil lage hull i tabellen
     @Override
     public T fjern(T element) {
         T temp = null;
@@ -137,11 +146,13 @@ public class TabellMengde<T> implements MengdeADT<T>{
                     break;
                 }
             }
+            fjernNull();
             return temp;
         }
         return temp;
     }
 
+    //omgjør mengdeADT<> til T[]
     @Override
     public T[] tilTabell() {
         return Arrays.copyOf(tabell,antall);
@@ -152,5 +163,17 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return antall;
     }
 
-
+    // Hjelpe metode for fjern slik at det ikke blir hull i tabellen
+    @SuppressWarnings("unchecked")
+    private void fjernNull(){
+        ArrayList<T> list = new ArrayList<>();
+        for (T element : tabell) {
+            if (element != null) {
+                list.add(element);
+            }
+        }
+        antall = list.size();
+        tabell = (T[]) new Object[antall];
+        list.toArray(tabell);
+    }
 }
