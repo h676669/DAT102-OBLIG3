@@ -81,7 +81,8 @@ public class TabellMengde<T> implements MengdeADT<T>{
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        MengdeADT<T> nyMengde = annenMengde;
+        MengdeADT<T> nyMengde;
+        nyMengde = annenMengde;
         for(int i = 0; i < antall; i++){
                 nyMengde.leggTil(tabell[i]);
         }
@@ -90,7 +91,8 @@ public class TabellMengde<T> implements MengdeADT<T>{
 
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        MengdeADT<T> nyMengde= annenMengde;
+        MengdeADT<T> nyMengde;
+        nyMengde = annenMengde;
         for(int i = 0; i < antall; i++){
             if(annenMengde.inneholder(tabell[i])){
                 nyMengde.fjern(tabell[i]);
@@ -109,7 +111,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
         else {
             T[] temp = tabell;
             tabell = (T[]) new Object[antall+1];
-            leggTilAlle(temp);
+            System.arraycopy(temp, 0, tabell, 0, antall);
             leggTil(element);
         }
     }
@@ -121,7 +123,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
         }
     }
 
-    //returnere null vist det ikke kan fjernes
+    // returnere null vist det ikke kan fjernes
     // vil lage hull i tabellen
     @Override
     public T fjern(T element) {
@@ -148,12 +150,6 @@ public class TabellMengde<T> implements MengdeADT<T>{
     public int antallElementer() {
         return antall;
     }
-
-    //Hjelpe funskjon for å lage nye tabeller av reine T variabler
-    private void leggTilAlle(T[] tabell){
-        for (T t : tabell){
-            leggTil(t);
-        }
-    }
+    
 
 }
