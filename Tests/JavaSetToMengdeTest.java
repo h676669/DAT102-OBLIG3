@@ -23,8 +23,10 @@ public class JavaSetToMengdeTest {
     @BeforeEach
     void setup() {
         testMengde1 = new JavaSetToMengde<>();
+        testMengde1kopi = new JavaSetToMengde<>();
         for (String s : stringTab1) {
             testMengde1.leggTil(s);
+            testMengde1kopi.leggTil(s);
             testMengdeUnion.leggTil(s);
         }
         testMengde2 = new JavaSetToMengde<>();
@@ -32,11 +34,8 @@ public class JavaSetToMengdeTest {
             testMengde2.leggTil(s);
             testMengdeUnion.leggTil(s);
         }
-        testMengde1kopi = new JavaSetToMengde<>();
-        for (String s : stringTab1) {
-            testMengde1kopi.leggTil(s);
-        }
         testMengdeSnitt.leggTil("Goku");
+        testMengdeTom = new JavaSetToMengde<>();
     }
 
 
@@ -45,6 +44,7 @@ public class JavaSetToMengdeTest {
         assertTrue(testMengde1.inneholder("Ogre"));
         assertTrue(testMengde2.inneholder("Freddy Fazbear"));
         assertFalse(testMengdeTom.inneholder("Nils"));
+        assertFalse(testMengde1.inneholder("Obama"));
     }
 
     @Test
@@ -62,10 +62,37 @@ public class JavaSetToMengdeTest {
     }
 
     @Test
+    void testLeggTilAlleFra() {
+        testMengdeTom.leggTilAlleFra(testMengde1);
+        assertTrue(testMengdeTom.erLik(testMengde1));
+        testMengde1.leggTilAlleFra(testMengde2);
+        assertTrue(testMengde1.erLik(testMengdeUnion));
+    }
+
+    @Test
     void testErTom() {
         assertTrue(testMengdeTom.erTom());
         testMengdeTom.leggTil("lol");
         assertFalse(testMengdeTom.erTom());
+    }
+
+    @Test
+    void testErDisjunkt() {
+        assertTrue(testMengde1.erDisjunkt(testMengdeTom));
+        assertFalse(testMengde1.erDisjunkt(testMengde2));
+    }
+
+    @Test
+    void testMinus() {
+        assertTrue(testMengde1.erLik(testMengde1.minus(testMengdeTom)));
+        testMengdeTom.leggTil("Goku");
+        testMengdeTom.leggTil("Kevin");
+        testMengdeTom.leggTil("Ogre");
+        assertFalse(testMengde1.erLik(testMengde1.minus(testMengdeTom)));
+        testMengde1kopi.fjern("Goku");
+        testMengde1kopi.fjern("Kevin");
+        testMengde1kopi.fjern("Ogre");
+        assertTrue(testMengde1kopi.erLik(testMengde1.minus(testMengdeTom)));
     }
 
     @Test
@@ -85,31 +112,9 @@ public class JavaSetToMengdeTest {
         testMengdeSnitt.erLik(testMengde1.snitt(testMengde2));
     }
 
-    // bing test
     @Test
-    void union() {
-        // create two sets with some common and some distinct elements
-        JavaSetToMengde<Integer> set1 = new JavaSetToMengde<>();
-        set1.leggTil(1);
-        set1.leggTil(2);
-        set1.leggTil(3);
-
-        JavaSetToMengde<Integer> set2 = new JavaSetToMengde<>();
-        set2.leggTil(3);
-        set2.leggTil(4);
-        set2.leggTil(5);
-
-        // create the expected union set
-        JavaSetToMengde<Integer> expected = new JavaSetToMengde<>();
-        expected.leggTil(1);
-        expected.leggTil(2);
-        expected.leggTil(3);
-        expected.leggTil(4);
-        expected.leggTil(5);
-
-        // call the union method and assert that the result is equal to the expected set
-        MengdeADT<Integer> actual = set1.union(set2);
-        assertTrue(actual.erLik(expected));
+    void testUnion() {
+        assertTrue(testMengde1.union(testMengde2).erLik(testMengdeUnion));
     }
 
     @Test
@@ -119,6 +124,4 @@ public class JavaSetToMengdeTest {
         assertTrue(testMengdeTom.erDelmengdeAv(testMengde1));
         assertFalse(testMengdeTom.erDelmengdeAv(testMengde2));
     }
-    
-
 }

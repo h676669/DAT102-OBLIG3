@@ -4,7 +4,7 @@ import java.util.*;
 
 public class JavaSetToMengde<T> implements MengdeADT<T> {
 
-    Set<T> z;
+    private final Set<T> z;
     private int antall;
 
     public JavaSetToMengde() {
@@ -73,13 +73,11 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        JavaSetToMengde<T> tempSet = new JavaSetToMengde<>(Set.copyOf(z));
+        Set<T> tempSet = new HashSet<>(Set.copyOf(z));
         for (T t : annenMengde.tilTabell()) {
-            if (tempSet.inneholder(t)) {
-                tempSet.fjern(t);
-            }
+            tempSet.remove(t);
         }
-        return tempSet;
+        return new JavaSetToMengde<>(tempSet);
     }
 
     @Override
