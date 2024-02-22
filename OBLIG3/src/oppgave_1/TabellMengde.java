@@ -2,16 +2,13 @@ package oppgave_1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
 public class TabellMengde<T> implements MengdeADT<T>{
     private T[] tabell;
     private int antall;
-    private final int standardStart = 10;
-
     @SuppressWarnings("unchecked")
     public TabellMengde() {
-        tabell = (T[]) new Object[standardStart];
+        tabell = (T[]) new Object[10];
         antall = 0;
     }
 
