@@ -1,6 +1,4 @@
-import oppgave_1.JavaSetToMengde;
 import oppgave_1.TabellMengde;
-import oppgave_1.MengdeADT;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TabellMengdeTest {
     TabellMengde<String> testMengde1;
     TabellMengde<String> testMengde2;
+    TabellMengde<String> testMengde3;
     String leggTil1;
     String leggTil2;
     @BeforeEach
     void setup() {
         testMengde1 = new TabellMengde<>();
         testMengde2 = new TabellMengde<>();
+        testMengde3 = new TabellMengde<>();
         leggTil1 = "10";
         leggTil2 = "100";
         int i = 0;
@@ -62,9 +62,45 @@ public class TabellMengdeTest {
         System.out.println("-----------------");
     }
     @Test
-    void erTom(){
+    void TesterTom(){
         assertTrue(testMengde1.erTom());
         testMengde1.leggTil(leggTil1);
         assertFalse(testMengde1.erTom());
+    }
+    @Test
+    void testDisjunkt(){
+        testMengde1.leggTil(leggTil2);
+        assertTrue(testMengde1.erDisjunkt(testMengde2));
+    }
+    @Test
+    void testSnitt(){
+        testMengde1.leggTil(leggTil1);
+        testMengde3 = testMengde2;testMengde3.leggTil(leggTil1);
+        assertTrue(testMengde3.erLik(testMengde1.snitt(testMengde2)));
+
+    }
+    @Test
+    void testUnion(){
+        testMengde3 = testMengde2;testMengde3.leggTil(leggTil2);
+        testMengde1.leggTil(leggTil2);
+        assertTrue(testMengde3.erLik(testMengde1.union(testMengde2)));
+    }
+    @Test
+    void testMinus(){
+        testMengde3 = testMengde2;
+        testMengde1.leggTil(leggTil2);
+        testMengde2.leggTil(leggTil2);
+        System.out.println("-----------------");
+        System.out.println("Test Minus en mengde fra en annen");
+        System.out.println("ikke være i output: "+Arrays.toString(testMengde1.tilTabell()));
+        System.out.println("Input: "+Arrays.toString(testMengde2.tilTabell()));
+        assertTrue(testMengde3.erLik(testMengde1.minus(testMengde2)));
+        System.out.println("output: "+Arrays.toString(testMengde1.minus(testMengde2).tilTabell()));
+        System.out.println("-----------------");
+    }
+    @Test
+    void testErDelmengdeAv(){
+        testMengde1.leggTil(leggTil1);
+        assertTrue(testMengde1.erDelmengdeAv(testMengde2));
     }
 }

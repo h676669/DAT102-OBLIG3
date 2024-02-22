@@ -39,9 +39,9 @@ public class TabellMengde<T> implements MengdeADT<T>{
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
         int antallIDelMengde = 0;
-        if(!(annenMengde.tilTabell().length > antall)){
-            for(T t : annenMengde.tilTabell()){
-                if(annenMengde.inneholder(t)){
+        if(!(annenMengde.tilTabell().length > antall) || !erTom()){
+            for(int i = 0; i < antall; i++){
+                if(annenMengde.inneholder(tabell[i])){
                     antallIDelMengde++;
                 }
             }
@@ -70,10 +70,11 @@ public class TabellMengde<T> implements MengdeADT<T>{
 
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-        MengdeADT<T> nyMengde = null;
+        MengdeADT<T> nyMengde;
+        nyMengde = annenMengde;
         for(int i = 0; i < antall; i++){
-            if(annenMengde.inneholder(tabell[i])){
-                nyMengde.leggTil(tabell[i]);
+            if(!(annenMengde.inneholder(tabell[i]))){
+                nyMengde.fjern(tabell[i]);
             }
         }
         return nyMengde;
