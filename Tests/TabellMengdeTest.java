@@ -109,9 +109,6 @@ public class TabellMengdeTest {
 
     @Test
     void testSnitt() {
-        System.out.println(Arrays.toString(testMengde1.tilTabell()));
-        System.out.println(Arrays.toString(testMengde2.tilTabell()));
-        System.out.println(Arrays.toString(testMengde1.snitt(testMengde2).tilTabell()));
         testMengdeSnitt.erLik(testMengde1.snitt(testMengde2));
     }
 
