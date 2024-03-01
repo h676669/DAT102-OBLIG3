@@ -6,12 +6,16 @@ import java.util.Arrays;
 public class TabellMengde<T> implements MengdeADT<T>{
     private T[] tabell;
     private int antall;
+    static final int DEFAULT_CAPACITY = 10;
     @SuppressWarnings("unchecked")
     public TabellMengde() {
-        tabell = (T[]) new Object[10];
+        tabell = (T[]) new Object[DEFAULT_CAPACITY];
         antall = 0;
     }
-
+    public TabellMengde(T[] tabell){
+        this.tabell = tabell;
+        this.antall = antallElementer();
+    }
     //sjekker om tabellen er tom
     @Override
     public boolean erTom() {
@@ -78,9 +82,9 @@ public class TabellMengde<T> implements MengdeADT<T>{
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
         MengdeADT<T> nyMengde;
         nyMengde = annenMengde;
-        for(int i = 0; i < antall; i++){
-            if(!(annenMengde.inneholder(tabell[i]))){
-                nyMengde.fjern(tabell[i]);
+        for(T element : annenMengde.tilTabell()){
+            if(!(annenMengde.inneholder(element))){
+                nyMengde.fjern(element);
             }
         }
         return nyMengde;
@@ -90,22 +94,25 @@ public class TabellMengde<T> implements MengdeADT<T>{
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
         MengdeADT<T> nyMengde;
         nyMengde = annenMengde;
-        for(int i = 0; i < antall; i++){
-                nyMengde.leggTil(tabell[i]);
+        for(T element : annenMengde.tilTabell()){
+                nyMengde.leggTil(element);
         }
         return nyMengde;
     }
 
+    //fjerner alle elementar som er i annenMengde fra mengden
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        MengdeADT<T> nyMengde;
-        nyMengde = annenMengde;
-        for(int i = 0; i < antall; i++){
-            if(annenMengde.inneholder(tabell[i])){
-                nyMengde.fjern(tabell[i]);
+        MengdeADT<T> nyMengde = new TabellMengde<>();
+        for(T element: tabell){
+            nyMengde.leggTil(element);
+        }
+        for (T element : annenMengde.tilTabell()){
+            if(nyMengde.inneholder(element)){
+                nyMengde.fjern(element);
             }
         }
-        return nyMengde;
+       return nyMengde;
     }
 
     // Legger til på slutten av tabellen
@@ -134,8 +141,8 @@ public class TabellMengde<T> implements MengdeADT<T>{
     // returnere null vist det ikke kan fjernes
     @Override
     public T fjern(T element) {
-        T temp = null;
         if(!erTom()){
+            T temp = null;
             for(int i = 0; i < tabell.length; i++){
                 if(tabell[i].equals(element) && tabell[i] != null){
                     temp =  tabell[i];
@@ -146,7 +153,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
             fjernNull();
             return temp;
         }
-        return temp;
+        return null;
     }
 
     //omgjør mengdeADT<> til T[]
@@ -160,7 +167,8 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return antall;
     }
 
-    // Hjelpe metode for fjern slik at det ikke blir hull i tabellen
+    // Hjelpe metode for fjerne null verdier
+    // fra fjern-metoden slik at det ikke blir hull i tabellen
     @SuppressWarnings("unchecked")
     private void fjernNull(){
         ArrayList<T> list = new ArrayList<>();
