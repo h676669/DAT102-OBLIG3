@@ -76,7 +76,7 @@ public class LenketMengde<T> implements MengdeADT<T> {
     }
 
     @Override
-    public MengdeADT snitt(MengdeADT<T> annenMengde) {
+    public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
         //Lager ny mengde snitt, sjekker om annenMengde og noden inneholder det samme
         //returnerer snitt
         LenketMengde<T> snitt = new LenketMengde<>();
@@ -91,12 +91,12 @@ public class LenketMengde<T> implements MengdeADT<T> {
     }
 
     @Override
-    public MengdeADT union(MengdeADT<T> annenMengde) {
+    public MengdeADT<T> union(MengdeADT<T> annenMengde) {
         return null;
     }
 
     @Override
-    public MengdeADT minus(MengdeADT<T> annenMengde) {
+    public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
         return null;
     }
 
