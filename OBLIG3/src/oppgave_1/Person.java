@@ -59,10 +59,10 @@ public class Person {
         Person person2 = new Person("Kåre", "spill", "matte");
         Person person3 = new Person("Hansen", "kjoring", "musikk", "data");
 
-        System.out.println(match(person1, person2));
-        System.out.println(match(person1, person3));
-        System.out.println(match(person2, person3));
-        System.out.println(match(person1, person1));
+        System.out.println(match(person1, person2)); // forventet 1.0
+        System.out.println(match(person1, person3)); // forventet -1.0
+        System.out.println(match(person2, person3)); // forventet -1.0
+        System.out.println(match(person1, person1)); // forventet 1.0
     }
 
 }
