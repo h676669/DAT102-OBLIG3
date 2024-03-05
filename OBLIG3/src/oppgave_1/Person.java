@@ -1,15 +1,68 @@
 package oppgave_1;
 
-public class Person {
-    private String navn;
-    private String [] Hobbyer;
-    public Person(String navn, String... hobbyer){
-        //skal sikkert vere noe her
-    }
-    static double match(Person A, Person B){
-        long match = 0;long antallFelles = 0;long antallKunHosDenEne = 0;long antallKunHosDenAndre = 0;long antallTotal = 0;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-        // all kode er bare start ting og skal sikkert bli slettet seinare med noe som faktisk gir mening
-        return (match = antallFelles - (antallKunHosDenEne + antallKunHosDenAndre) / antallTotal);
+public class Person {
+    private final String navn;
+    private final String[] Hobbyer;
+    public Person(String navn, String... Hobbyer){
+        this.navn = navn;
+        this.Hobbyer = Hobbyer;
     }
+    public static double match(Person A, Person B){
+        double antallFelles = felles(A,B);
+        double antallKunHosDenEne = A.getHobbyer().length;
+        double antallKunHosDenAndre = B.getHobbyer().length;
+        double antallTotal = antallKunHosDenAndre +antallKunHosDenEne;
+
+        return (antallFelles - (antallKunHosDenEne + antallKunHosDenAndre) / antallTotal);
+    }
+    public static double felles(Person A, Person B){
+        double iFelles = 0;
+        for (String s : B.getHobbyer()){
+            if(A.inneholder(s)){
+                iFelles++;
+            }
+        }
+        return iFelles;
+    }
+    public String[] getHobbyer(){
+        return Hobbyer;
+    }
+    public String getNavn(){
+        return navn;
+    }
+    public static String[] stort(String[] HobbyerPerson1, String[] HobbyerPerson2){
+        if(HobbyerPerson1.length < HobbyerPerson2.length ){
+            return HobbyerPerson2;
+        }
+        else  {
+            return HobbyerPerson1;
+        }
+    }
+
+    public boolean inneholder(String Hobby){
+        for (String s : Hobbyer){
+            if(s.equalsIgnoreCase(Hobby)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /******************************************************************/
+    public static void main(String[] args) {
+        Person person1 = new Person("Peter", "Matte", "Spill");
+        Person person2 = new Person("Kåre", "spill", "matte");
+        Person person3 = new Person("Hansen", "kjoring", "musikk", "data");
+
+        System.out.println(match(person1, person2));
+        System.out.println(match(person1, person3));
+        System.out.println(match(person2, person3));
+        System.out.println(match(person1, person1));
+    }
+
 }
