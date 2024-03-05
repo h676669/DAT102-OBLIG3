@@ -1,9 +1,4 @@
 package oppgave_1;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Person {
     private final String navn;
     private final String[] Hobbyer;
@@ -36,15 +31,6 @@ public class Person {
     public String getNavn(){
         return navn;
     }
-    public static String[] stort(String[] HobbyerPerson1, String[] HobbyerPerson2){
-        if(HobbyerPerson1.length < HobbyerPerson2.length ){
-            return HobbyerPerson2;
-        }
-        else  {
-            return HobbyerPerson1;
-        }
-    }
-
     public boolean inneholder(String Hobby){
         for (String s : Hobbyer){
             if(s.equalsIgnoreCase(Hobby)){
