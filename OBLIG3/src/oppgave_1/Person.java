@@ -11,6 +11,8 @@ public class Person {
         this.navn = navn;
         this.Hobbyer = Hobbyer;
     }
+
+    //går fra 1.0 til -1.0. der 1 er fullstendig match og -1 er ingen ting til felles
     public static double match(Person A, Person B){
         double antallFelles = felles(A,B);
         double antallKunHosDenEne = A.getHobbyer().length;
