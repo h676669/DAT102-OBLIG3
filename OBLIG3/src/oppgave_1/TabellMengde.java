@@ -31,7 +31,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     @Override
     public boolean inneholder(T element) {
         for(T t: tabell){
-            if(t == element){
+            if(t != null && t.equals(element)){
                 return true;
             }
         }
@@ -56,7 +56,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
         int like = 0;
-        for(int i = 0;i < antall;i++ ){
+        for(int i = 0;i < antall; i++){
             if(annenMengde.inneholder(tabell[i])){
                 like++;
             }
@@ -144,14 +144,14 @@ public class TabellMengde<T> implements MengdeADT<T>{
         if(!erTom()){
             T temp = null;
             for(int i = 0; i < tabell.length; i++){
-                if(tabell[i].equals(element) && tabell[i] != null){
-                    temp =  tabell[i];
-                    tabell[i] = null;
-                    break;
+                if(tabell[i] != null && tabell[i].equals(element)){
+                    temp = tabell[i];
+                    tabell[i] = tabell[antall - 1];
+                    tabell[antall - 1] = null;
+                    antall--;
+                    return temp;
                 }
             }
-            fjernNull();
-            return temp;
         }
         return null;
     }
@@ -170,7 +170,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     // Hjelpe metode for fjerne null verdier
     // fra fjern-metoden slik at det ikke blir hull i tabellen
     @SuppressWarnings("unchecked")
-    private void fjernNull(){
+    private void fjernNull(){ // wtf???
         ArrayList<T> list = new ArrayList<>();
         for (T element : tabell) {
             if (element != null) {
