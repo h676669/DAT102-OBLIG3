@@ -13,7 +13,6 @@ public class BinaryVSHash {
         HasjListe = new HashSet<Integer>(START_STORRELSE);
         liste = new ArrayList<Integer>(START_STORRELSE);
     }
-
     //Skal sikkert være mere kode her
     public void SettInn(int antElement){
         int tall = 376; // Her kan vi bruke eit vilkårlig tal
@@ -21,6 +20,5 @@ public class BinaryVSHash {
             // legg tall til i HashSet og tabell
             tall = (tall + 45713) % 1000000; // Sjå nedenfor om 45713
         }
-
     }
 }
