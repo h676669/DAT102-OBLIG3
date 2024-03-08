@@ -16,7 +16,7 @@ public class BinaryVSHash {
 
     public void SettInn(int antElement){
         int tall = 376; // Her kan vi bruke eit vilkårlig tal
-        for (int i = 0; i < antElement;i++){
+        for (int i = 0; i < antElement; i++){
             // legg tall til i HashSet og tabell
             tall = (tall + 45713) % 1000000; // Sjå nedenfor om 45713
         }
