@@ -104,7 +104,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
         MengdeADT<T> nyMengde = new TabellMengde<>();
-        for(T element: tabell){
+        for(T element : tabell){
             nyMengde.leggTil(element);
         }
         for (T element : annenMengde.tilTabell()){
@@ -125,7 +125,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
         }
         else {
             T[] temp = tabell;
-            tabell = (T[]) new Object[antall+1];
+            tabell = (T[]) new Object[antall << 1];
             System.arraycopy(temp, 0, tabell, 0, antall);
             leggTil(element);
         }
