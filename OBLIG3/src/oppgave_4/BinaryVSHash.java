@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 
 public class BinaryVSHash {
-    private HashSet<Integer> HashListe;
+    private HashSet<Integer> HasjListe;
     private List<Integer> liste;
     private static final int START_STORRELSE = 10;
 
     public BinaryVSHash(){
-        HashListe = new HashSet<Integer>(START_STORRELSE);
+        HasjListe = new HashSet<Integer>(START_STORRELSE);
         liste = new ArrayList<Integer>(START_STORRELSE);
     }
 
