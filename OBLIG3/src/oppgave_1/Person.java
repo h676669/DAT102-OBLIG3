@@ -34,7 +34,7 @@ public class Person {
     public String[] getHobbyer(){
         return Hobbyer;
     }
-    //Vil aldri bli brukt. Bare for konstruktøren sin skyld.
+    //Vil aldri bli brukt. Bare for IntelliJ sin skyld.
     private String getNavn(){
         return navn;
     }
