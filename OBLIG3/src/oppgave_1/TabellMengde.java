@@ -142,7 +142,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     @Override
     public T fjern(T element) {
         if(!erTom()){
-            T temp = null;
+            T temp;
             for(int i = 0; i < tabell.length; i++){
                 if(tabell[i] != null && tabell[i].equals(element)){
                     temp = tabell[i];
@@ -170,7 +170,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     // Hjelpe metode for fjerne null verdier
     // fra fjern-metoden slik at det ikke blir hull i tabellen
     @SuppressWarnings("unchecked")
-    private void fjernNull(){ // wtf???
+    private void fjernNull(){ // 👍
         ArrayList<T> list = new ArrayList<>();
         for (T element : tabell) {
             if (element != null) {
