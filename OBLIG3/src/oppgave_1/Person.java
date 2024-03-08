@@ -28,7 +28,8 @@ public class Person {
     public String[] getHobbyer(){
         return Hobbyer;
     }
-    public String getNavn(){
+    //Vil aldri bli brukt. Bare for konstruktøren sin skyld.
+    private String getNavn(){
         return navn;
     }
     public boolean inneholder(String Hobby){

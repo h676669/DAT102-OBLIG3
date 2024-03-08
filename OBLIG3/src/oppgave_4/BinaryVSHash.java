@@ -14,6 +14,7 @@ public class BinaryVSHash {
         liste = new ArrayList<Integer>(START_STORRELSE);
     }
 
+    //Skal sikkert være mere kode her
     public void SettInn(int antElement){
         int tall = 376; // Her kan vi bruke eit vilkårlig tal
         for (int i = 0; i < antElement; i++){
