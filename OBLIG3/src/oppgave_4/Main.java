@@ -21,30 +21,30 @@ public class Main {
         Arrays.sort(tabell);
         Random random = new Random();
 
-        Instant start = Instant.now();
         int antallFunnetSet = 0;
+        Instant start = Instant.now();
         for (int i = 0; i < 10000; i++) {
             int number = random.nextInt(1000000);
             if (hasjListe.contains(number)) {
                 antallFunnetSet++;
             }
         }
-        System.out.println("Set funnet: " + antallFunnetSet);
         Instant end = Instant.now();
         Duration timeElapsed = Duration.between(start, end);
+        System.out.println("Set funnet: " + antallFunnetSet);
         System.out.println("Set tid: " + timeElapsed.toMillis() + "ms");
 
-        start = Instant.now();
         int antallFunnetTab = 0;
+        start = Instant.now();
         for (int i = 0; i < 10000; i++) {
             int number = random.nextInt(1000000);
             if (binarySearch(tabell, number) != -1) {
                 antallFunnetTab++;
             }
         }
-        System.out.println("Tab funnet: " + antallFunnetTab);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
+        System.out.println("Tab funnet: " + antallFunnetTab);
         System.out.println("Tab tid: " + timeElapsed.toMillis() + "ms");
     }
 
