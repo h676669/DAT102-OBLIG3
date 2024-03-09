@@ -21,7 +21,7 @@ public class HobbyMatchMain {
         System.out.println("Melvin + Alfred: " + q1);
         System.out.println("Melvin + Gunnlaug: " + q2);
         System.out.println("Alfred + Gunnlaug: " + q3);
-        
+
     }
 
     static double match(Person2 a, Person2 b) {
