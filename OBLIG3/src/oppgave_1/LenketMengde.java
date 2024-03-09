@@ -18,16 +18,7 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean inneholder(T element) {
-        //Så lenge "denne" ikke er null, sjekker if setningen om element er i T og returnerer true
-        //om T inneholder element.
-        Node denne = first;
-        while (denne != null) {
-            if (denne.data.equals(element)) {
-                return true;
-            }
-            denne = denne.neste;
-        }
-        return false;
+        return (getReferenceTo(element) != null);
     }
 
     @Override
