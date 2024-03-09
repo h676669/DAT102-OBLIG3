@@ -9,34 +9,35 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         int arrSize = 1000000;
+        int antallTall = 10000;
 
-        HashSet<Integer> hasjListe = new HashSet<>();
+        HashSet<Integer> hasjSet = new HashSet<>();
         int[] tabell = new int[arrSize];
         int tall = 376;
         for (int i = 0; i < arrSize; i++) {
             tall = (tall + 45713) % 1000000;
             tabell[i] = tall;
-            hasjListe.add(tall);
+            hasjSet.add(tall);
         }
         Arrays.sort(tabell);
         Random random = new Random();
 
         int antallFunnetSet = 0;
         Instant start = Instant.now();
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < antallTall; i++) {
             int number = random.nextInt(1000000);
-            if (hasjListe.contains(number)) {
+            if (hasjSet.contains(number)) {
                 antallFunnetSet++;
             }
         }
         Instant end = Instant.now();
         Duration timeElapsed = Duration.between(start, end);
-        System.out.println("Set funnet: " + antallFunnetSet);
+        System.out.println("Set funnet: " + antallFunnetSet + " / " + antallTall);
         System.out.println("Set tid: " + timeElapsed.toMillis() + "ms");
 
         int antallFunnetTab = 0;
         start = Instant.now();
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < antallTall; i++) {
             int number = random.nextInt(1000000);
             if (binarySearch(tabell, number) != -1) {
                 antallFunnetTab++;
@@ -44,7 +45,7 @@ public class Main {
         }
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
-        System.out.println("Tab funnet: " + antallFunnetTab);
+        System.out.println("Tab funnet: " + antallFunnetTab + " / " + antallTall);
         System.out.println("Tab tid: " + timeElapsed.toMillis() + "ms");
     }
 
