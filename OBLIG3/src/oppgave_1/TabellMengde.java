@@ -119,15 +119,17 @@ public class TabellMengde<T> implements MengdeADT<T>{
     @SuppressWarnings("unchecked")
     @Override
     public void leggTil(T element) {
-        if(antall < tabell.length ){
-            tabell[antall] = element;
-            antall++;
-        }
-        else {
-            T[] temp = tabell;
-            tabell = (T[]) new Object[antall << 1];
-            System.arraycopy(temp, 0, tabell, 0, antall);
-            leggTil(element);
+        if (!inneholder(element)) {
+            if(antall < tabell.length ){
+                tabell[antall] = element;
+                antall++;
+            }
+            else {
+                T[] temp = tabell;
+                tabell = (T[]) new Object[antall << 1];
+                System.arraycopy(temp, 0, tabell, 0, antall);
+                leggTil(element);
+            }
         }
     }
 

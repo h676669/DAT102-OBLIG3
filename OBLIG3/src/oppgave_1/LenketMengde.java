@@ -1,18 +1,8 @@
 package oppgave_1;
 
+import java.util.ArrayList;
+
 public class LenketMengde<T> implements MengdeADT<T> {
-
-    private class Node {
-
-        private T data;
-        private Node neste;
-
-        private Node(T data) {
-            this.data = data;
-            this.neste = null;
-        }
-    }
-
     private Node first;
     private int antall;
 
@@ -56,10 +46,13 @@ public class LenketMengde<T> implements MengdeADT<T> {
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
         //Sjekker om de er samme lengde. Om de er det OG er delmengder, da er de like og returnerer true.
-        if (this.antall != annenMengde.antallElementer()) {
-            return false;
+        if (annenMengde != null) {
+            if (this.antall != annenMengde.antallElementer()) {
+                return false;
+            }
+            return this.erDelmengdeAv(annenMengde);
         }
-        return this.erDelmengdeAv(annenMengde);
+        return false;
     }
 
     @Override
@@ -106,33 +99,77 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public void leggTil(T element) {
-        //TODO
-
+        if (!inneholder(element)) { // Sjekker etter duplikat
+           Node temp = new Node(element);
+           temp.neste = first;
+           first = temp;
+           antall++;
+        }
     }
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-        //TODO
+        if (annenMengde != null) {
+            for (T t : annenMengde.tilTabell()) {
+                leggTil(t);
+            }
+        }
     }
 
     @Override
     public T fjern(T element) {
-        //TODO
-
+        if (!erTom()) {
+            Node currentNode = getReferenceTo(element);
+            T temp = null;
+            if (currentNode != null) {
+                temp = currentNode.data;
+                currentNode.data = first.data;
+                first = first.neste;
+                antall--;
+            }
+            return temp;
+        }
         return null;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public T[] tilTabell() {
-        //TODO
-
-        return null;
+        ArrayList<T> temp = new ArrayList<>();
+        Node currentNode = first;
+        while (currentNode != null) {
+            temp.add(currentNode.data);
+        }
+        return temp.toArray((T[]) new Object[0]);
     }
 
     @Override
     public int antallElementer() {
-        //TODO
+        return antall;
+    }
 
-        return 0;
+    // Hjelpemetode som henter en referanse til noden som inneholder 'element'
+    // retunerer null hvis 'element' ikke er en del av mengden
+    private Node getReferenceTo(T element) {
+        Node currentNode = first;
+        while (currentNode != null) {
+            if (element.equals(currentNode.data)) {
+                return currentNode;
+            } else {
+                currentNode = currentNode.neste;
+            }
+        }
+        return null;
+    }
+
+    private class Node {
+
+        private T data;
+        private Node neste;
+
+        private Node(T data) {
+            this.data = data;
+            this.neste = null;
+        }
     }
 }
