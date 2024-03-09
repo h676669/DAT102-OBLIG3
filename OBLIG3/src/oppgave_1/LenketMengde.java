@@ -85,16 +85,23 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        //TODO
-
-        return null;
+        LenketMengde<T> nyMengde = new LenketMengde<>();
+        for (T t : tilTabell()) {
+            nyMengde.leggTil(t);
+        }
+        nyMengde.leggTilAlleFra(annenMengde);
+        return nyMengde;
     }
 
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-        //TODO
-
-        return null;
+        LenketMengde<T> nyMengde = new LenketMengde<>();
+        for (T t : tilTabell()) {
+            if (!annenMengde.inneholder(t)) {
+                nyMengde.leggTil(t);
+            }
+        }
+        return nyMengde;
     }
 
     @Override
@@ -139,6 +146,7 @@ public class LenketMengde<T> implements MengdeADT<T> {
         Node currentNode = first;
         while (currentNode != null) {
             temp.add(currentNode.data);
+            currentNode = currentNode.neste;
         }
         return temp.toArray((T[]) new Object[0]);
     }

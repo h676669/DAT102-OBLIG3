@@ -65,7 +65,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     }
 
     @Override
-    public MengdeADT<T> union(MengdeADT<T> annenMengde) {
+    public JavaSetToMengde<T> union(MengdeADT<T> annenMengde) {
         Set<T> tempSet = new HashSet<>(Set.copyOf(z));
         tempSet.addAll(Arrays.asList(annenMengde.tilTabell()));
         return new JavaSetToMengde<>(tempSet);
