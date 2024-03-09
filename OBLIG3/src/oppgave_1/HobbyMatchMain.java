@@ -11,7 +11,7 @@ public class HobbyMatchMain {
         Person2 Alfred = new Person2("Alfred", "jakt", "sykling", "venner", "data", "trolle melvin på reddit");
 
         Person2 Gunnlaug = new Person2("Gunnlaug", "jakt", "funkopops", "venner", "data", "anime");
-        
+
         double q1 = match(Melvin, Alfred);
         double q2 = match(Melvin, Gunnlaug);
         double q3 = match(Alfred, Gunnlaug);
@@ -21,6 +21,7 @@ public class HobbyMatchMain {
         System.out.println("Melvin + Alfred: " + q1);
         System.out.println("Melvin + Gunnlaug: " + q2);
         System.out.println("Alfred + Gunnlaug: " + q3);
+        
     }
 
     static double match(Person2 a, Person2 b) {
