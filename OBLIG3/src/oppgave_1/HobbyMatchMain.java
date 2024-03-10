@@ -16,7 +16,7 @@ public class HobbyMatchMain {
         double q2 = match(Melvin, Gunnlaug);
         double q3 = match(Alfred, Gunnlaug);
 
-        System.out.println("Melvin + Melvin: " + match(Melvin, Melvin)) ;
+        System.out.println("Melvin + Melvin: " + match(Melvin, Melvin));
         System.out.println("Alfred + Melvin: " + match(Alfred, Melvin));
         System.out.println("Melvin + Alfred: " + q1);
         System.out.println("Melvin + Gunnlaug: " + q2);
