@@ -5,12 +5,12 @@ public class HobbyMatchMain {
 
     // kan legge til mer her senere
     public static void main(String[] args) {
-        Person2 Melvin = new Person2("Melvin", "anime", "tegneseries", "reddit moderation", "data",
+        Person Melvin = new Person("Melvin", "anime", "tegneseries", "reddit moderation", "data",
                 "fast food", "funkopops");
 
-        Person2 Alfred = new Person2("Alfred", "jakt", "sykling", "venner", "data", "trolle melvin på reddit");
+        Person Alfred = new Person("Alfred", "jakt", "sykling", "venner", "data", "trolle melvin på reddit");
 
-        Person2 Gunnlaug = new Person2("Gunnlaug", "jakt", "funkopops", "venner", "data", "anime");
+        Person Gunnlaug = new Person("Gunnlaug", "jakt", "funkopops", "venner", "data", "anime");
 
         double q1 = match(Melvin, Alfred);
         double q2 = match(Melvin, Gunnlaug);
@@ -24,7 +24,7 @@ public class HobbyMatchMain {
 
     }
 
-    static double match(Person2 a, Person2 b) {
+    static double match(Person a, Person b) {
         int antallFelles, antallKunHosDenEne, antallKunHosDenAndre, antallTotalt;
         antallFelles = a.getHobbyer().snitt(b.getHobbyer()).antallElementer();
         antallKunHosDenEne = a.getHobbyer().minus(b.getHobbyer()).antallElementer();
