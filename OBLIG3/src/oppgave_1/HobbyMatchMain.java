@@ -2,7 +2,6 @@ package oppgave_1;
 
 public class HobbyMatchMain {
 
-
     // kan legge til mer her senere
     public static void main(String[] args) {
         Person Melvin = new Person("Melvin", "anime", "tegneseries", "reddit moderation", "data",
@@ -21,7 +20,6 @@ public class HobbyMatchMain {
         System.out.println("Melvin + Alfred: " + q1);
         System.out.println("Melvin + Gunnlaug: " + q2);
         System.out.println("Alfred + Gunnlaug: " + q3);
-
     }
 
     static double match(Person a, Person b) {

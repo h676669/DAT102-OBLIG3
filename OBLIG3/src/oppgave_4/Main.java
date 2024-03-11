@@ -57,11 +57,11 @@ public class Main {
             if (numberToFind == midValue) {
                 return midIndex;
             }
-            // høyre side
+            // venstre side
             if (numberToFind < midValue) {
                 endIndex = midIndex - 1;
             } else {
-            // venstre side
+            // høyre side
                 startIndex = midIndex + 1;
             }
         }
