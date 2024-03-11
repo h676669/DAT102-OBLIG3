@@ -111,9 +111,6 @@ public class TabellMengdeTest {
 
     @Test
     void testUnion() {
-        System.out.println(testMengde1.antallElementer()+testMengde2.antallElementer());
-        System.out.println(testMengdeUnion.antallElementer());
-        System.out.println(testMengde1.union(testMengde2).antallElementer());
         assertTrue(testMengde1.union(testMengde2).erLik(testMengdeUnion));
     }
 
