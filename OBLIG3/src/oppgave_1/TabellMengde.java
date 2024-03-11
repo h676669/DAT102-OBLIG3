@@ -53,6 +53,9 @@ public class TabellMengde<T> implements MengdeADT<T>{
 
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
+        if (antall != annenMengde.antallElementer()){
+            return false;
+        }
         int like = 0;
         for(int i = 0; i < antall; i++){
             if(annenMengde.inneholder(tabell[i])){
@@ -92,7 +95,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
         MengdeADT<T> nyMengde;
         nyMengde = annenMengde;
-        for(T element : annenMengde.tilTabell()){
+        for(T element : tabell){
                 nyMengde.leggTil(element);
         }
         return nyMengde;
@@ -104,6 +107,9 @@ public class TabellMengde<T> implements MengdeADT<T>{
         MengdeADT<T> nyMengde = new TabellMengde<>();
         for(T element : tabell){
             nyMengde.leggTil(element);
+        }
+        if (annenMengde.erTom()){
+
         }
         for (T element : annenMengde.tilTabell()){
             if(nyMengde.inneholder(element)){
@@ -119,7 +125,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     @SuppressWarnings("unchecked")
     @Override
     public void leggTil(T element) {
-        if (!inneholder(element)) {
+        if (!inneholder(element) && element != null) {
             if(antall < tabell.length ){
                 tabell[antall] = element;
                 antall++;
@@ -143,7 +149,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     // returnere null vist det ikke kan fjernes
     @Override
     public T fjern(T element) {
-        if(!erTom()){
+        if (!erTom()){
             T temp;
             for(int i = 0; i < tabell.length; i++){
                 if(tabell[i] != null && tabell[i].equals(element)){

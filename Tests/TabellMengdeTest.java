@@ -89,6 +89,7 @@ public class TabellMengdeTest {
         testMengde1kopi.fjern("Kevin");
         testMengde1kopi.fjern("Ogre");
         assertTrue(testMengde1kopi.erLik(testMengde1.minus(testMengdeTom)));
+
     }
 
     @Test
@@ -110,6 +111,9 @@ public class TabellMengdeTest {
 
     @Test
     void testUnion() {
+        System.out.println(testMengde1.antallElementer()+testMengde2.antallElementer());
+        System.out.println(testMengdeUnion.antallElementer());
+        System.out.println(testMengde1.union(testMengde2).antallElementer());
         assertTrue(testMengde1.union(testMengde2).erLik(testMengdeUnion));
     }
 
