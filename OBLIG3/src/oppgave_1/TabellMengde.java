@@ -121,7 +121,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
 
     // Legger til på slutten av tabellen
     // Sjekker etter duplikater først
-    // Utvider tabellen hvis den er full
+    // Utvider tabellen med 1 hvis den er full
     @SuppressWarnings("unchecked")
     @Override
     public void leggTil(T element) {
