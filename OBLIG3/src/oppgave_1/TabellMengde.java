@@ -16,7 +16,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
         this.tabell = tabell;
         this.antall = antallElementer();
     }
-    //sjekker om tabellen er tom
+    // sjekker om tabellen er tom
     @Override
     public boolean erTom() {
         for(T t : tabell){
@@ -27,7 +27,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return true;
     }
 
-    //Sjekker om tabellen inneholder et spesifikt element
+    // Sjekker om tabellen inneholder et spesifikt element
     @Override
     public boolean inneholder(T element) {
         for(T t: tabell){
@@ -38,7 +38,6 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return false;
     }
 
-    //Antar ingen duplikater
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
         int antallIDelMengde = 0;
@@ -52,11 +51,10 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return antallIDelMengde == antall;
     }
 
-    //Antar at det ikke er duplikater i mengdene
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
         int like = 0;
-        for(int i = 0;i < antall; i++){
+        for(int i = 0; i < antall; i++){
             if(annenMengde.inneholder(tabell[i])){
                 like++;
             }
@@ -100,7 +98,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
         return nyMengde;
     }
 
-    //fjerner alle elementar som er i annenMengde fra mengden
+    // fjerner alle elementer som er i annenMengde fra mengden
     @Override
     public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
         MengdeADT<T> nyMengde = new TabellMengde<>();
@@ -116,6 +114,8 @@ public class TabellMengde<T> implements MengdeADT<T>{
     }
 
     // Legger til på slutten av tabellen
+    // Sjekker etter duplikater først
+    // Utvider tabellen hvis den er full
     @SuppressWarnings("unchecked")
     @Override
     public void leggTil(T element) {
@@ -172,7 +172,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
     // Hjelpe metode for fjerne null verdier
     // fra fjern-metoden slik at det ikke blir hull i tabellen
     @SuppressWarnings("unchecked")
-    private void fjernNull(){ // 👍
+    private void fjernNull(){
         ArrayList<T> list = new ArrayList<>();
         for (T element : tabell) {
             if (element != null) {

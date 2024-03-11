@@ -40,7 +40,14 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erLik(MengdeADT<T> annenMengde) {
-        return Arrays.equals(tilTabell(), annenMengde.tilTabell());
+        if (antall == annenMengde.antallElementer()) {
+            T[] mengde1 = tilTabell();
+            T[] mengde2 = annenMengde.tilTabell();
+            Arrays.sort(mengde1);
+            Arrays.sort(mengde2);
+            return (Arrays.equals(mengde1, mengde2));
+        }
+        return false;
     }
 
     @Override
@@ -65,7 +72,7 @@ public class JavaSetToMengde<T> implements MengdeADT<T> {
     }
 
     @Override
-    public JavaSetToMengde<T> union(MengdeADT<T> annenMengde) {
+    public MengdeADT<T> union(MengdeADT<T> annenMengde) {
         Set<T> tempSet = new HashSet<>(Set.copyOf(z));
         tempSet.addAll(Arrays.asList(annenMengde.tilTabell()));
         return new JavaSetToMengde<>(tempSet);
