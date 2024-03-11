@@ -121,7 +121,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
 
     // Legger til på slutten av tabellen
     // Sjekker etter duplikater først
-    // Utvider tabellen med 1 hvis den er full
+    // Dobler størrelsen hvis den er full
     @SuppressWarnings("unchecked")
     @Override
     public void leggTil(T element) {
@@ -132,7 +132,7 @@ public class TabellMengde<T> implements MengdeADT<T>{
             }
             else {
                 T[] temp = tabell;
-                tabell = (T[]) new Object[antall << 1];
+                tabell = (T[]) new Object[antall*2];
                 System.arraycopy(temp, 0, tabell, 0, antall);
                 leggTil(element);
             }
