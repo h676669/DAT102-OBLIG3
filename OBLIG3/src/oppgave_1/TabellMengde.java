@@ -19,6 +19,9 @@ public class TabellMengde<T> implements MengdeADT<T>{
     // sjekker om tabellen er tom
     @Override
     public boolean erTom() {
+        if(antall == 0){
+            return true;
+        }
         for(T t : tabell){
             if(t != null){
                 return false;
