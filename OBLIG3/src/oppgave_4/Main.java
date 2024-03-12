@@ -8,8 +8,8 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        int arrSize = 1000000;
-        int antallTall = 10000;
+        int arrSize = 1000;
+        int antallTall = 1000000;
 
         HashSet<Integer> hasjSet = new HashSet<>();
         int[] tabell = new int[arrSize];

@@ -1,3 +1,6 @@
 /.idea/
 /out/
 
+out/production/OBLIG3/oppgave_1/TabellMengde.class
+out/production/OBLIG3/oppgave_1/LenketMengde.class
+*.class

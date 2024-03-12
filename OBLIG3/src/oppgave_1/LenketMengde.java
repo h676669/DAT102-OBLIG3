@@ -24,6 +24,12 @@ public class LenketMengde<T> implements MengdeADT<T> {
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
         //Går gjennom noden og returnerer false om T har elementer som ikke er i annenMengde
+        if (!erTom() && annenMengde.erTom()) {
+            return false;
+        }
+        if (erTom() && annenMengde.erTom()) {
+            return true;
+        }
         Node denne = first;
         while (denne != null) {
             if (!annenMengde.inneholder(denne.data)) {
@@ -76,12 +82,12 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        LenketMengde<T> nyMengde = new LenketMengde<>();
-        for (T t : tilTabell()) {
-            nyMengde.leggTil(t);
-        }
-        nyMengde.leggTilAlleFra(annenMengde);
-        return nyMengde;
+            MengdeADT<T> nyMengde = new LenketMengde<>();
+            for (T t : tilTabell()) {
+                nyMengde.leggTil(t);
+            }
+            nyMengde.leggTilAlleFra(annenMengde);
+            return nyMengde;
     }
 
     @Override
