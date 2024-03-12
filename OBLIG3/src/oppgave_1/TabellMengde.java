@@ -148,8 +148,10 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-        for (T t : annenMengde.tilTabell()) {
-            leggTil(t);
+        if (!(annenMengde.erTom())){
+            for (T t : annenMengde.tilTabell()) {
+                leggTil(t);
+            }
         }
     }
 
