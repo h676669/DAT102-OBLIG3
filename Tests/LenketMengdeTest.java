@@ -1,4 +1,4 @@
-import oppgave_1.*;
+import oppgave_1.LenketMengde;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

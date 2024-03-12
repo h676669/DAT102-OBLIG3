@@ -28,7 +28,7 @@ public class HobbyMatchMain {
         antallKunHosDenEne = a.getHobbyer().minus(b.getHobbyer()).antallElementer();
         antallKunHosDenAndre = b.getHobbyer().minus(a.getHobbyer()).antallElementer();
         antallTotalt = a.getHobbyer().union(b.getHobbyer()).antallElementer();
-        return (double)(antallFelles - (antallKunHosDenEne + antallKunHosDenAndre)) / antallTotalt;
+        return (double) (antallFelles - (antallKunHosDenEne + antallKunHosDenAndre)) / antallTotalt;
     }
 
 }

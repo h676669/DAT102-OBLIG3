@@ -98,10 +98,10 @@ public class LenketMengde<T> implements MengdeADT<T> {
     @Override
     public void leggTil(T element) {
         if (!inneholder(element)) { // Sjekker etter duplikat
-           Node temp = new Node(element);
-           temp.neste = first;
-           first = temp;
-           antall++;
+            Node temp = new Node(element);
+            temp.neste = first;
+            first = temp;
+            antall++;
         }
     }
 

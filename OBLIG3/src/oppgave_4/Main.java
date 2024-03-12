@@ -61,12 +61,13 @@ public class Main {
             if (numberToFind < midValue) {
                 endIndex = midIndex - 1;
             } else {
-            // høyre side
+                // høyre side
                 startIndex = midIndex + 1;
             }
         }
         return -1;
     }
+
     public static int binarySearch(int[] numbers, int numberToFind) {
         return binarySearch(numbers, numberToFind, 0, numbers.length - 1);
     }

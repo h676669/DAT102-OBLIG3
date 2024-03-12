@@ -34,24 +34,24 @@ public interface MengdeADT<T> {
     /**
      * @param annenMengde
      * @return Snittet av mengden og en annenMengde.
-     *         Metoden skal ikke endre på mengden eller annenMengde,
-     *         men lage en ny mengde som blir resultatet.
+     * Metoden skal ikke endre på mengden eller annenMengde,
+     * men lage en ny mengde som blir resultatet.
      */
     MengdeADT<T> snitt(MengdeADT<T> annenMengde);
 
     /**
      * @param annenMengde
      * @return Unionen av mengden og en annenMengde.
-     *         Metoden skal ikke endre på mengden eller annenMengde,
-     *         men lage en ny mengde som blir resultatet.
+     * Metoden skal ikke endre på mengden eller annenMengde,
+     * men lage en ny mengde som blir resultatet.
      */
     MengdeADT<T> union(MengdeADT<T> annenMengde);
 
     /**
      * @param annenMengde
      * @return Mengden minus annenMengde.
-     *         Metoden skal ikke endre på mengden eller annenMengde,
-     *         men lage en ny mengde som blir resultatet.
+     * Metoden skal ikke endre på mengden eller annenMengde,
+     * men lage en ny mengde som blir resultatet.
      */
     MengdeADT<T> minus(MengdeADT<T> annenMengde);
 
@@ -82,7 +82,7 @@ public interface MengdeADT<T> {
 
     /**
      * @return En tabell av elementene i mengden. Tabellen har størrelse lik
-     *         antall elementer i mengden.
+     * antall elementer i mengden.
      */
     T[] tilTabell();
 
