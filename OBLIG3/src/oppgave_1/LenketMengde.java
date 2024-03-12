@@ -82,6 +82,9 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
+        if(erTom() && annenMengde.erTom()) {
+            return new LenketMengde<>();
+        }
             MengdeADT<T> nyMengde = new LenketMengde<>();
             for (T t : tilTabell()) {
                 nyMengde.leggTil(t);
