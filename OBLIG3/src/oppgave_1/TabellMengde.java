@@ -175,19 +175,9 @@ public class TabellMengde<T> implements MengdeADT<T> {
     public int antallElementer() {
         return antall;
     }
-
-    // Hjelpe metode for fjerne null verdier
-    // fra fjern-metoden slik at det ikke blir hull i tabellen
-    @SuppressWarnings("unchecked")
-    private void fjernNull() {
-        ArrayList<T> list = new ArrayList<>();
-        for (T element : tabell) {
-            if (element != null) {
-                list.add(element);
-            }
+    public void skrivUt(){
+        for (T element : tabell){
+            System.out.println(element);
         }
-        antall = list.size();
-        tabell = (T[]) new Object[antall];
-        list.toArray(tabell);
     }
 }
