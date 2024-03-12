@@ -1,6 +1,5 @@
 package oppgave_1;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TabellMengde<T> implements MengdeADT<T> {
@@ -175,8 +174,9 @@ public class TabellMengde<T> implements MengdeADT<T> {
     public int antallElementer() {
         return antall;
     }
-    public void skrivUt(){
-        for (T element : tabell){
+
+    public void skrivUt() {
+        for (T element : tabell) {
             System.out.println(element);
         }
     }
