@@ -71,22 +71,21 @@ public class TabellMengde<T> implements MengdeADT<T>{
     // sjekker om to mengder har ingen like elementer
     @Override
     public boolean erDisjunkt(MengdeADT<T> annenMengde) {
-        int antallIDelMengde = 0;
         if(!(annenMengde.tilTabell().length > antall)){
             for(T t : annenMengde.tilTabell()){
                 if(annenMengde.inneholder(t)){
-                    antallIDelMengde++;
+                  return false;
                 }
             }
         }
-        return antallIDelMengde == 0;
+        return true;
     }
 
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
         MengdeADT<T> nyMengde;
         nyMengde = annenMengde;
-        for(T element : annenMengde.tilTabell()){
+        for(T element : tabell){
             if(!(annenMengde.inneholder(element))){
                 nyMengde.fjern(element);
             }
@@ -110,9 +109,6 @@ public class TabellMengde<T> implements MengdeADT<T>{
         MengdeADT<T> nyMengde = new TabellMengde<>();
         for(T element : tabell){
             nyMengde.leggTil(element);
-        }
-        if (annenMengde.erTom()){
-
         }
         for (T element : annenMengde.tilTabell()){
             if(nyMengde.inneholder(element)){
