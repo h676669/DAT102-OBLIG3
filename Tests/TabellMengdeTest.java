@@ -116,6 +116,7 @@ public class TabellMengdeTest {
 
     @Test
     void testErDelmengdeAv() {
+        assertTrue(testMengdeTom.erDelmengdeAv(testMengdeTom));
         testMengdeTom.leggTil("Goku");
         testMengdeTom.leggTil("Joe Biden");
         assertTrue(testMengdeTom.erDelmengdeAv(testMengde1));

@@ -45,13 +45,20 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
+        if (erTom() && !(annenMengde.erTom())){
+            return true;
+        }
+        if (!erTom() && (annenMengde.erTom())){
+            return false;
+        }
         int antallIDelMengde = 0;
-        if (!(annenMengde.tilTabell().length > antall) || !erTom()) {
+        if (!erTom()) {
             for (int i = 0; i < antall; i++) {
                 if (annenMengde.inneholder(tabell[i])) {
                     antallIDelMengde++;
                 }
             }
+            return antallIDelMengde == antall;
         }
         return antallIDelMengde == antall;
     }
