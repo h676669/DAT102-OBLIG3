@@ -137,7 +137,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
             if (antall < tabell.length) {
                 tabell[antall] = element;
                 antall++;
-            } else {
+            } else if(tabell.length == antall){
                 T[] temp = tabell;
                 tabell = (T[]) new Object[antall * 2];
                 System.arraycopy(temp, 0, tabell, 0, antall);
