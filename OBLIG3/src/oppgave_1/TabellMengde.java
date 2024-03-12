@@ -105,9 +105,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
         MengdeADT<T> nyMengde = new TabellMengde<>();
-        for (T element : tabell) {
-            nyMengde.leggTil(element);
-        }
+        nyMengde.leggTilAlleFra(this);
         nyMengde.leggTilAlleFra(annenMengde);
         return nyMengde;
     }
