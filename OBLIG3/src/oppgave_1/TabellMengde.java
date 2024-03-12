@@ -85,10 +85,10 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-        MengdeADT<T> nyMengde;
-        nyMengde = annenMengde;
+        MengdeADT<T> nyMengde = new TabellMengde<>();
+        nyMengde.leggTilAlleFra(annenMengde);
         for (T element : tabell) {
-            if (!(annenMengde.inneholder(element))) {
+            if (!(nyMengde.inneholder(element))) {
                 nyMengde.fjern(element);
             }
         }
@@ -97,7 +97,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
     @Override
     public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-        MengdeADT<T> nyMengde = new LenketMengde<>();
+        MengdeADT<T> nyMengde = new TabellMengde<>();
         for (T element : tabell) {
             nyMengde.leggTil(element);
         }
